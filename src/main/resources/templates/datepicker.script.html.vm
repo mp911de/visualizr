@@ -1,0 +1,29 @@
+<script type="text/javascript" src="js/jquery.datetimepicker.js"></script>
+<script>
+    $('#fromTimestamp').datetimepicker({
+                                           format: 'Y-m-d H:i'
+                                       });
+    $('#fromTimestampButton').click(function () {
+        $('#fromTimestamp').datetimepicker('show'); //support hide,show and destroy command
+    });
+
+    $('#toTimestamp').datetimepicker({
+                                         format: 'Y-m-d H:i'
+                                     });
+    $('#toTimestampButton').click(function () {
+        $('#toTimestamp').datetimepicker('show'); //support hide,show and destroy command
+    });
+
+
+    $('a.dateselection').each(
+        function (index) {
+            var element = $(this);
+            var target = element.data('target');
+            if (target) {
+                element.click(function () {
+                    $(target).val(element.text());
+                });
+            }
+        }
+    );
+</script>
