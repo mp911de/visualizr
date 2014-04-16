@@ -1,19 +1,17 @@
 package biz.paluch.visualizr;
 
-import java.io.StringWriter;
-import java.util.Properties;
-
-import javax.annotation.PostConstruct;
-import javax.ws.rs.*;
-import javax.ws.rs.core.MediaType;
-
+import biz.paluch.visualizr.demo.DemoDatasourceProvider;
+import biz.paluch.visualizr.spi.DatasourceProvider;
 import org.apache.velocity.Template;
 import org.apache.velocity.VelocityContext;
 import org.apache.velocity.app.VelocityEngine;
 import org.apache.velocity.context.Context;
 
-import biz.paluch.visualizr.demo.DemoDatasourceProvider;
-import biz.paluch.visualizr.spi.DatasourceProvider;
+import javax.annotation.PostConstruct;
+import javax.ws.rs.*;
+import javax.ws.rs.core.MediaType;
+import java.io.StringWriter;
+import java.util.Properties;
 
 /**
  * @author <a href="mailto:mark.paluch@1und1.de">Mark Paluch</a>
@@ -46,15 +44,19 @@ public class ViewResource {
         Template template = velocityEngine.getTemplate("templates/view.html.vm");
         Context ctx = new VelocityContext();
 
-        ctx.put("renderDatePicker", true);
-        ctx.put("renderDataSourcePicker", true);
-        ctx.put("localFrameworkResources", true);
+        populateContext(ctx);
         ctx.put("datasources", getDatasourceProvider().getDatasources());
 
         StringWriter writer = new StringWriter();
         template.merge(ctx, writer);
 
         return writer.toString();
+    }
+
+    public void populateContext(Context ctx) {
+        ctx.put("renderDatePicker", true);
+        ctx.put("renderDataSourcePicker", true);
+        ctx.put("localFrameworkResources", true);
     }
 
     public DatasourceProvider getDatasourceProvider() {

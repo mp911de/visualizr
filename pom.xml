@@ -10,7 +10,7 @@
         <version>7</version>
     </parent>
 
-    <groupId>de.paluch.visualizr</groupId>
+    <groupId>biz.paluch.visualizr</groupId>
     <artifactId>vizualizr</artifactId>
     <version>1.0-SNAPSHOT</version>
     <packaging>jar</packaging>
