@@ -10,7 +10,7 @@ import java.util.Map;
  */
 public class ChartDescriptorsRepresentation {
 
-    private Map<String, ChartDescriptor> chartDescriptors = new HashMap<>();
+    private Map<String, ChartDescriptor> chartDescriptors = new HashMap<String, ChartDescriptor>();
 
     public ChartDescriptorsRepresentation() {
     }

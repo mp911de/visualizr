@@ -1,17 +1,18 @@
 package biz.paluch.visualizr;
 
-import biz.paluch.visualizr.demo.DemoChartProvider;
-import biz.paluch.visualizr.model.ChartData;
-import biz.paluch.visualizr.spi.ChartProvider;
-
-import javax.ws.rs.*;
-import javax.ws.rs.core.MediaType;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.List;
 import java.util.Map;
 import java.util.TimeZone;
+
+import javax.ws.rs.*;
+import javax.ws.rs.core.MediaType;
+
+import biz.paluch.visualizr.demo.DemoChartProvider;
+import biz.paluch.visualizr.model.ChartData;
+import biz.paluch.visualizr.spi.ChartProvider;
 
 /**
  * @author <a href="mailto:mpaluch@paluch.biz">Mark Paluch</a>
@@ -39,35 +40,32 @@ public class ChartDataResource {
 
     private void setCalendar(String timeSpec, String tz, Calendar calendar) throws ParseException {
         if (timeSpec != null) {
-            switch (timeSpec) {
-                case "now":
-                    break;
-                case "5min":
-                    calendar.add(Calendar.MINUTE, -5);
-                    break;
-                case "10min":
-                    calendar.add(Calendar.MINUTE, -10);
-                    break;
-                case "30min":
-                    calendar.add(Calendar.MINUTE, -30);
-                    break;
-                case "1hr":
-                    calendar.add(Calendar.HOUR, -1);
-                    break;
-                case "6hr":
-                    calendar.add(Calendar.HOUR, -6);
-                    break;
-                case "12hr":
-                    calendar.add(Calendar.HOUR, -12);
-                    break;
-                case "1day":
-                    calendar.add(Calendar.DATE, -1);
-                    break;
-                default:
-                    SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm");
-                    simpleDateFormat.setTimeZone(TimeZone.getTimeZone(tz));
-                    calendar.setTime(simpleDateFormat.parse(timeSpec));
-                    break;
+            if (timeSpec.equals("now")) {
+            } else if (timeSpec.equals("5min")) {
+                calendar.add(Calendar.MINUTE, -5);
+
+            } else if (timeSpec.equals("10min")) {
+                calendar.add(Calendar.MINUTE, -10);
+
+            } else if (timeSpec.equals("30min")) {
+                calendar.add(Calendar.MINUTE, -30);
+
+            } else if (timeSpec.equals("1hr")) {
+                calendar.add(Calendar.HOUR, -1);
+
+            } else if (timeSpec.equals("6hr")) {
+                calendar.add(Calendar.HOUR, -6);
+
+            } else if (timeSpec.equals("12hr")) {
+                calendar.add(Calendar.HOUR, -12);
+
+            } else if (timeSpec.equals("1day")) {
+                calendar.add(Calendar.DATE, -1);
+
+            } else {
+                SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+                simpleDateFormat.setTimeZone(TimeZone.getTimeZone(tz));
+                calendar.setTime(simpleDateFormat.parse(timeSpec));
 
             }
         }

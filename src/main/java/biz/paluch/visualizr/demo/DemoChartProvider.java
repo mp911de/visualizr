@@ -39,13 +39,13 @@ public class DemoChartProvider implements ChartProvider {
     @Override
     public Map<String, List<ChartData>> getDatasets(String datasourceId, Date from, Date to, List<String> chartIds) {
 
-        Map<String, List<ChartData>> result = new HashMap<>();
+        Map<String, List<ChartData>> result = new HashMap<String, List<ChartData>>();
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm");
         for (String chartId : chartIds) {
             Calendar cal = Calendar.getInstance();
             cal.setTime(from);
 
-            List<ChartData> list = new ArrayList<>();
+            List<ChartData> list = new ArrayList<ChartData>();
 
             while (cal.getTime().before(to)) {
 

@@ -16,7 +16,7 @@ public class ChartDescriptor implements Serializable {
     private String titleField;
     private String categoryField;
     private int precision;
-    private List<ChartGraphDescriptor> graphs = new ArrayList<>();
+    private List<ChartGraphDescriptor> graphs = new ArrayList<ChartGraphDescriptor>();
 
     public String getId() {
         return id;

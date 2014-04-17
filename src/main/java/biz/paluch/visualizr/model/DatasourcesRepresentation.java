@@ -8,7 +8,7 @@ import java.util.List;
  * @since 13.04.14 11:15
  */
 public class DatasourcesRepresentation {
-    private List<Datasource> datasources = new ArrayList<>();
+    private List<Datasource> datasources = new ArrayList<Datasource>();
 
     public List<Datasource> getDatasources() {
         return datasources;

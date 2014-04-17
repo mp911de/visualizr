@@ -1,12 +1,12 @@
 package biz.paluch.visualizr.model;
 
-import org.codehaus.jackson.annotate.JsonAnyGetter;
-import org.codehaus.jackson.annotate.JsonAnySetter;
-import org.codehaus.jackson.annotate.JsonIgnore;
-
 import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
+
+import org.codehaus.jackson.annotate.JsonAnyGetter;
+import org.codehaus.jackson.annotate.JsonAnySetter;
+import org.codehaus.jackson.annotate.JsonIgnore;
 
 /**
  * @author <a href="mailto:mpaluch@paluch.biz">Mark Paluch</a>
@@ -15,7 +15,7 @@ import java.util.Map;
 public class ChartData implements Serializable {
 
     @JsonIgnore
-    private Map<String, Object> data = new HashMap<>();
+    private Map<String, Object> data = new HashMap<String, Object>();
 
     public Map<String, Object> getData() {
         return data;
