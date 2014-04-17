@@ -10,7 +10,6 @@ import java.util.TimeZone;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 
-import biz.paluch.visualizr.demo.DemoChartProvider;
 import biz.paluch.visualizr.model.ChartData;
 import biz.paluch.visualizr.spi.ChartProvider;
 
@@ -19,9 +18,7 @@ import biz.paluch.visualizr.spi.ChartProvider;
  * @since 13.04.14 11:24
  */
 @Path("api/{datasourceId}/data")
-public class ChartDataResource {
-
-    private ChartProvider chartProvider = new DemoChartProvider();
+public abstract class AbstractChartDataResource {
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)
@@ -71,7 +68,5 @@ public class ChartDataResource {
         }
     }
 
-    public ChartProvider getChartProvider() {
-        return chartProvider;
-    }
+    public abstract ChartProvider getChartProvider();
 }

@@ -91,6 +91,7 @@
                 <artifactId>jetty-maven-plugin</artifactId>
                 <version>9.1.4.v20140401</version>
                 <configuration>
+                    <useTestScope>true</useTestScope>
                     <scanIntervalSeconds>0</scanIntervalSeconds>
                     <webAppSourceDirectory>${basedir}/src/test/webapp</webAppSourceDirectory>
                     <webApp>

@@ -1,27 +1,27 @@
 package biz.paluch.visualizr;
 
-import biz.paluch.visualizr.demo.DemoDatasourceProvider;
-import biz.paluch.visualizr.spi.DatasourceProvider;
+import java.io.StringWriter;
+import java.util.Properties;
+
+import javax.annotation.PostConstruct;
+import javax.ws.rs.*;
+import javax.ws.rs.core.MediaType;
+
 import org.apache.velocity.Template;
 import org.apache.velocity.VelocityContext;
 import org.apache.velocity.app.VelocityEngine;
 import org.apache.velocity.context.Context;
 
-import javax.annotation.PostConstruct;
-import javax.ws.rs.*;
-import javax.ws.rs.core.MediaType;
-import java.io.StringWriter;
-import java.util.Properties;
+import biz.paluch.visualizr.spi.DatasourceProvider;
 
 /**
  * @author <a href="mailto:mpaluch@paluch.biz">Mark Paluch</a>
  * @since 13.04.14 11:26
  */
 @Path("view")
-public class ViewResource {
+public abstract class AbstractViewResource {
 
     private VelocityEngine velocityEngine;
-    private DatasourceProvider datasourceProvider = new DemoDatasourceProvider();
 
     @PostConstruct
     public void postConstruct() throws Exception {
@@ -59,7 +59,5 @@ public class ViewResource {
         ctx.put("localFrameworkResources", true);
     }
 
-    public DatasourceProvider getDatasourceProvider() {
-        return datasourceProvider;
-    }
+    public abstract DatasourceProvider getDatasourceProvider();
 }

@@ -1,12 +1,14 @@
 package biz.paluch.visualizr;
 
-import com.google.common.collect.Sets;
-import org.jboss.resteasy.plugins.providers.InputStreamProvider;
-import org.jboss.resteasy.plugins.providers.StringTextStar;
+import java.util.Set;
 
 import javax.ws.rs.ApplicationPath;
 import javax.ws.rs.core.Application;
-import java.util.Set;
+
+import org.jboss.resteasy.plugins.providers.InputStreamProvider;
+import org.jboss.resteasy.plugins.providers.StringTextStar;
+
+import com.google.common.collect.Sets;
 
 /**
  * @author <a href="mailto:mpaluch@paluch.biz">Mark Paluch</a>
