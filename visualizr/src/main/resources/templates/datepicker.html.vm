@@ -1,0 +1,54 @@
+<div class="form-group col-lg-4">
+    <div class="input-group">
+        <input type="text" class="form-control" id="fromTimestamp" value="12hr"/>
+            <span class="input-group-btn">
+
+                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">From
+                    <span class="caret"></span></button>
+                    <ul class="dropdown-menu">
+                        <li><a href="#" id="fromTimestampButton">Date</a></li>
+                        <li><a href="#" class="dateselection" data-target="#fromTimestamp">now</a></li>
+                        <li><a href="#" class="dateselection" data-target="#fromTimestamp">5min</a></li>
+                        <li><a href="#" class="dateselection" data-target="#fromTimestamp">10min</a></li>
+                        <li><a href="#" class="dateselection" data-target="#fromTimestamp">30min</a></li>
+                        <li><a href="#" class="dateselection" data-target="#fromTimestamp">1hr</a></li>
+                        <li><a href="#" class="dateselection" data-target="#fromTimestamp">6hr</a></li>
+                        <li><a href="#" class="dateselection" data-target="#fromTimestamp">12hr</a></li>
+                        <li><a href="#" class="dateselection" data-target="#fromTimestamp">1day</a></li>
+                    </ul>
+            </span>
+    </div>
+</div>
+<div class="form-group col-lg-4">
+    <div class="input-group">
+        <input type="text" class="form-control" id="toTimestamp" value="now">
+                <span class="input-group-btn">
+
+                    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">To
+                        <span class="caret"></span></button>
+                        <ul class="dropdown-menu">
+                            <li><a href="#" id="toTimestampButton">Date</a></li>
+                            <li><a href="#" class="dateselection" data-target="#toTimestamp">now</a></li>
+                            <li><a href="#" class="dateselection" data-target="#toTimestamp">5min</a></li>
+                            <li><a href="#" class="dateselection" data-target="#toTimestamp">10min</a></li>
+                            <li><a href="#" class="dateselection" data-target="#toTimestamp">30min</a></li>
+                            <li><a href="#" class="dateselection" data-target="#toTimestamp">1hr</a></li>
+                            <li><a href="#" class="dateselection" data-target="#toTimestamp">6hr</a></li>
+                            <li><a href="#" class="dateselection" data-target="#toTimestamp">12hr</a></li>
+                            <li><a href="#" class="dateselection" data-target="#toTimestamp">1day</a></li>
+                        </ul>
+                </span>
+    </div>
+</div>
+
+<div class="checkbox col-lg-2">
+    <label>
+        <input type="checkbox" id="autoupdate" value="true"> Auto-Update
+    </label>
+    <h5 id="lastupdated">
+        <small id="lastupdatedtext"></small>
+    </h5>
+</div>
+<div class="checkbox col-lg-2">
+    <button type="button" id="refresh" class="btn btn-default"><span class="glyphicon glyphicon-refresh"/></button>
+</div>
