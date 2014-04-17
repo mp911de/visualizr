@@ -1,17 +1,18 @@
 package biz.paluch.visualizr.model;
 
-import java.util.HashMap;
-import java.util.Map;
-
 import org.codehaus.jackson.annotate.JsonAnyGetter;
 import org.codehaus.jackson.annotate.JsonAnySetter;
 import org.codehaus.jackson.annotate.JsonIgnore;
+
+import java.io.Serializable;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * @author <a href="mailto:mpaluch@paluch.biz">Mark Paluch</a>
  * @since 13.04.14 11:20
  */
-public class ChartData {
+public class ChartData implements Serializable {
 
     @JsonIgnore
     private Map<String, Object> data = new HashMap<>();

@@ -2,11 +2,13 @@ package biz.paluch.visualizr.model;
 
 import org.codehaus.jackson.annotate.JsonProperty;
 
+import java.io.Serializable;
+
 /**
  * @author <a href="mailto:mpaluch@paluch.biz">Mark Paluch</a>
  * @since 13.04.14 11:15
  */
-public class Datasource {
+public class Datasource implements Serializable {
     @JsonProperty
     private String id;
 

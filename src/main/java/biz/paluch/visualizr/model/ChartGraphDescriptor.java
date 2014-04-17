@@ -1,10 +1,12 @@
 package biz.paluch.visualizr.model;
 
+import java.io.Serializable;
+
 /**
  * @author <a href="mailto:mpaluch@paluch.biz">Mark Paluch</a>
  * @since 13.04.14 11:18
  */
-public class ChartGraphDescriptor {
+public class ChartGraphDescriptor implements Serializable {
     private String id;
     private String name;
 

@@ -1,5 +1,6 @@
 package biz.paluch.visualizr.model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -7,7 +8,7 @@ import java.util.List;
  * @author <a href="mailto:mpaluch@paluch.biz">Mark Paluch</a>
  * @since 13.04.14 11:16
  */
-public class ChartDescriptor {
+public class ChartDescriptor implements Serializable {
     private String id;
     private String title;
     private String xAxisTitle;
