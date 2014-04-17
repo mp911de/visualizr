@@ -1,5 +1,11 @@
 package biz.paluch.visualizr;
 
+import biz.paluch.visualizr.demo.DemoChartProvider;
+import biz.paluch.visualizr.model.ChartData;
+import biz.paluch.visualizr.spi.ChartProvider;
+
+import javax.ws.rs.*;
+import javax.ws.rs.core.MediaType;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -7,15 +13,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.TimeZone;
 
-import javax.ws.rs.*;
-import javax.ws.rs.core.MediaType;
-
-import biz.paluch.visualizr.demo.DemoChartProvider;
-import biz.paluch.visualizr.model.ChartData;
-import biz.paluch.visualizr.spi.ChartProvider;
-
 /**
- * @author <a href="mailto:mark.paluch@1und1.de">Mark Paluch</a>
+ * @author <a href="mailto:mpaluch@paluch.biz">Mark Paluch</a>
  * @since 13.04.14 11:24
  */
 @Path("api/{datasourceId}/data")

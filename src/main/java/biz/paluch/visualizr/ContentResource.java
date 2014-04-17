@@ -1,12 +1,12 @@
 package biz.paluch.visualizr;
 
-import java.io.InputStream;
-
 import javax.ws.rs.*;
 import javax.ws.rs.core.Response;
+import java.io.InputStream;
 
 /**
- * @author <a href="mailto:mark.paluch@1und1.de">Mark Paluch</a>
+ * Proxy for bundled resources.
+ * @author <a href="mailto:mpaluch@paluch.biz">Mark Paluch</a>
  * @since 13.04.14 10:50
  */
 @Path("view")

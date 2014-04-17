@@ -80,6 +80,12 @@ var visualizr = (function () {
             }
         }
 
+        for (var i = 0; i < chartDescriptors.length; i++) {
+            if (chartDescriptors[i]) {
+                $("#" + chartDescriptors[i].id).remove();
+            }
+        }
+
         chartInstances = [];
         chartDescriptors = [];
 

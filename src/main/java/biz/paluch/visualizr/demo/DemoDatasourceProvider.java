@@ -7,7 +7,7 @@ import biz.paluch.visualizr.model.Datasource;
 import biz.paluch.visualizr.spi.DatasourceProvider;
 
 /**
- * @author <a href="mailto:mark.paluch@1und1.de">Mark Paluch</a>
+ * @author <a href="mailto:mpaluch@paluch.biz">Mark Paluch</a>
  * @since 15.04.14 08:20
  */
 public class DemoDatasourceProvider implements DatasourceProvider {

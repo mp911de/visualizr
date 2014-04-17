@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * @author <a href="mailto:mark.paluch@1und1.de">Mark Paluch</a>
+ * @author <a href="mailto:mpaluch@paluch.biz">Mark Paluch</a>
  * @since 13.04.14 11:16
  */
 public class ChartDescriptor {
