@@ -216,6 +216,7 @@ var visualizr = (function () {
         updated = new Date().getTime();
         if (chartDescriptors.length > 0) {
             var chartIds = "";
+            var timezoneId = getTimezoneId();
             for (var i = 0; i < chartDescriptors.length; i++) {
                 chartIds += "&chart=" + chartDescriptors[i].id;
             }
@@ -230,7 +231,7 @@ var visualizr = (function () {
                 time += "&to=" + to;
             }
 
-            $.getJSON("../api/" + datsourceId + "/data?tz=UTC" + chartIds + time, function (data) {
+            $.getJSON("../api/" + datsourceId + "/data?tz=" + timezoneId + chartIds + time, function (data) {
 
                 for (var i = 0; i < chartDescriptors.length; i++) {
 
@@ -258,6 +259,32 @@ var visualizr = (function () {
     visualizr.autoupdateChanged = function () {
         autoupdate = $("#autoupdate").is(':checked');
     };
+
+
+    function getTimezoneId() {
+        var offset = new Date().getTimezoneOffset() * -1;
+        var hours = Math.floor(offset / 60);
+        var minutes = offset - (hours * 60);
+
+        if (minutes < 10) {
+            minutes = '0' + minutes;
+        }
+
+        if (Math.abs(hours) < 10) {
+            hours = '0' + hours;
+        }
+
+        var result = "GMT";
+        if (hours > 0) {
+            result += "+" + hours;
+        }
+        else {
+            result += hours
+        }
+
+        result += ":" + minutes;
+        return result;
+    }
 
 
 // Good: only exporting the public interface,
