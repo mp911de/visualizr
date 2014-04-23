@@ -12,6 +12,14 @@ charts based on time data.
 * Automatic refresh
 * Easy integration
 
+![visualizr](screenshots/visualizr.png)
+
+__Datepicker__
+![visualizr Datepicker](screenshots/datepicker.png)
+
+__Timepicker__
+![visualizr Timepicker](screenshots/timepicker.png)
+
 Integration
 --------------
 
@@ -44,7 +52,7 @@ Wanna try it? You need just maven for it:
     cd visualizr
     mvn jetty:run
 
-Open your browser and start http://localhost:8080/visualizr/view/single.html
+Open your browser and start [http://localhost:8080/visualizr/view/single.html]
 
 
 Versions/Dependencies
