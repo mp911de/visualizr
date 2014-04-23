@@ -44,6 +44,8 @@ Wanna try it? You need just maven for it:
     cd visualizr
     mvn jetty:run
 
+Open your browser and start http://localhost:8080/visualizr/view/single.html
+
 
 Versions/Dependencies
 --------------
