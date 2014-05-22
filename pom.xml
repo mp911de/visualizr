@@ -16,7 +16,7 @@
 
     <groupId>biz.paluch.visualizr</groupId>
     <artifactId>vizualizr-parent</artifactId>
-    <version>1.0</version>
+    <version>1.1-SNAPSHOT</version>
     <packaging>pom</packaging>
 
     <name>Simple graph visualizer</name>
