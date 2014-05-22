@@ -17,24 +17,24 @@
     </parent>
 
     <groupId>biz.paluch.visualizr</groupId>
-    <artifactId>vizualizr-parent</artifactId>
+    <artifactId>visualizr-parent</artifactId>
     <version>1.0-SNAPSHOT</version>
     <packaging>pom</packaging>
 
     <name>Simple graph visualizer</name>
-    <url>https://github.com/mp911de/vizualizr/</url>
+    <url>https://github.com/mp911de/visualizr/</url>
     <inceptionYear>2014</inceptionYear>
 
     <scm>
-        <connection>scm:git://github.com/mp911de/vizualizr.git</connection>
-        <developerConnection>scm:git:git@github.com:mp911de/vizualizr.git</developerConnection>
-        <url>http://github.com/mp911de/vizualizr/</url>
+        <connection>scm:git://github.com/mp911de/visualizr.git</connection>
+        <developerConnection>scm:git:git@github.com:mp911de/visualizr.git</developerConnection>
+        <url>http://github.com/mp911de/visualizr/</url>
         <tag>HEAD</tag>
     </scm>
 
     <issueManagement>
         <system>GitHub</system>
-        <url>https://github.com/mp911de/vizualizr/issues</url>
+        <url>https://github.com/mp911de/visualizr/issues</url>
     </issueManagement>
 
     <licenses>

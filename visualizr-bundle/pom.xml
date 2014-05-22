@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
-        <artifactId>vizualizr-parent</artifactId>
+        <artifactId>visualizr-parent</artifactId>
         <groupId>biz.paluch.visualizr</groupId>
         <version>1.0-SNAPSHOT</version>
     </parent>

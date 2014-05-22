@@ -6,7 +6,7 @@
 
     <parent>
         <groupId>biz.paluch.visualizr</groupId>
-        <artifactId>vizualizr-parent</artifactId>
+        <artifactId>visualizr-parent</artifactId>
         <version>1.0-SNAPSHOT</version>
     </parent>
 
