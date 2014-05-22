@@ -79,6 +79,7 @@
                 <configuration>
                     <releaseProfiles>sonatype-oss-release</releaseProfiles>
                     <goals>deploy</goals>
+                    <tagNameFormat>visualizr-@{project.version}</tagNameFormat>
                 </configuration>
             </plugin>
         </plugins>
