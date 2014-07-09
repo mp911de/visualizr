@@ -7,7 +7,7 @@ var visualizr = (function () {
     var to = '';
     var datsourceId = '';
     var autoupdate = false;
-    var chartheight = 400;
+    var chartheight = 500;
     var updated = 0;
     var updateIntervall = 30000;
 
@@ -86,11 +86,7 @@ var visualizr = (function () {
             }
         }
 
-        for (var i = 0; i < chartDescriptors.length; i++) {
-            if (chartDescriptors[i]) {
-                $("#" + chartDescriptors[i].id).remove();
-            }
-        }
+        $(".chartdiv").remove();
 
         chartInstances = [];
         chartDescriptors = [];
@@ -111,7 +107,7 @@ var visualizr = (function () {
 
 
             if ($("#" + chartDescriptor.id).length == 0) {
-                $("#chartContainer").append('<div id="' + chartDescriptor.id + '" class="col-lg-6 chart" style="height: ' + chartheight + 'px"></div>');
+                $("#chartContainer").append('<div id="' + chartDescriptor.id + '" class="col-lg-6 chart chartdiv" style="height: ' + chartheight + 'px"></div>');
             }
 
             // SERIAL CHART

@@ -17,13 +17,14 @@ public interface ChartProvider {
      * Retrieve a list of chart descriptors for a specific data source. A datasource can contain one or more different charts.
      * The chart descriptor id must be unique within a data source.
      * 
-     * @param datasourceId
+     * @param dataSourceId
      * @return List<ChartDescriptor>
      */
-    List<ChartDescriptor> getChartDescriptors(String datasourceId);
+    List<ChartDescriptor> getChartDescriptors(String dataSourceId);
 
     /**
      * Retrieve chart data.
+     * 
      * @param dataSourceId
      * @param from
      * @param to

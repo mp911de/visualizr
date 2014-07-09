@@ -1,6 +1,8 @@
 package biz.paluch.visualizr;
 
-import biz.paluch.visualizr.demo.DemoChartProvider;
+import biz.paluch.visualizr.metrics.DefaultComposites;
+import biz.paluch.visualizr.metrics.MetricsChartProvider;
+import biz.paluch.visualizr.metrics.SnapshotsHolder;
 import biz.paluch.visualizr.spi.ChartProvider;
 
 /**
@@ -10,6 +12,6 @@ import biz.paluch.visualizr.spi.ChartProvider;
 public class ChartDataResource extends AbstractChartDataResource {
     @Override
     public ChartProvider getChartProvider() {
-        return new DemoChartProvider();
+        return new MetricsChartProvider(SnapshotsHolder.snapshots, DefaultComposites.getComposites());
     }
 }

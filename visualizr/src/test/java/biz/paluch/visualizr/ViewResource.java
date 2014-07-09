@@ -1,6 +1,8 @@
 package biz.paluch.visualizr;
 
-import biz.paluch.visualizr.demo.DemoDataSourceProvider;
+import biz.paluch.visualizr.metrics.DefaultComposites;
+import biz.paluch.visualizr.metrics.MetricsDataSourceProvider;
+import biz.paluch.visualizr.metrics.SnapshotsHolder;
 import biz.paluch.visualizr.spi.DataSourceProvider;
 
 /**
@@ -10,6 +12,6 @@ import biz.paluch.visualizr.spi.DataSourceProvider;
 public class ViewResource extends AbstractViewResource {
     @Override
     public DataSourceProvider getDataSourceProvider() {
-        return new DemoDataSourceProvider();
+        return new MetricsDataSourceProvider(SnapshotsHolder.snapshots, DefaultComposites.getComposites());
     }
 }
