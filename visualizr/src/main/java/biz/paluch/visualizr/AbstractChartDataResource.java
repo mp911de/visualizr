@@ -36,32 +36,42 @@ public abstract class AbstractChartDataResource {
 
     private void setCalendar(String timeSpec, String tz, Calendar calendar) throws ParseException {
         if (timeSpec != null) {
-            if (timeSpec.equals("now")) {
-            } else if (timeSpec.equals("5min")) {
+            switch (timeSpec) {
+            case "now":
+                break;
+            case "5min":
                 calendar.add(Calendar.MINUTE, -5);
 
-            } else if (timeSpec.equals("10min")) {
+                break;
+            case "10min":
                 calendar.add(Calendar.MINUTE, -10);
 
-            } else if (timeSpec.equals("30min")) {
+                break;
+            case "30min":
                 calendar.add(Calendar.MINUTE, -30);
 
-            } else if (timeSpec.equals("1hr")) {
+                break;
+            case "1hr":
                 calendar.add(Calendar.HOUR, -1);
 
-            } else if (timeSpec.equals("6hr")) {
+                break;
+            case "6hr":
                 calendar.add(Calendar.HOUR, -6);
 
-            } else if (timeSpec.equals("12hr")) {
+                break;
+            case "12hr":
                 calendar.add(Calendar.HOUR, -12);
 
-            } else if (timeSpec.equals("1day")) {
+                break;
+            case "1day":
                 calendar.add(Calendar.DATE, -1);
 
-            } else {
+                break;
+            default:
                 SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm");
                 simpleDateFormat.setTimeZone(TimeZone.getTimeZone(tz));
                 calendar.setTime(simpleDateFormat.parse(timeSpec));
+                break;
             }
         }
     }

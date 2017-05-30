@@ -46,7 +46,7 @@ public class MetricItem {
 
     public static class Builder {
 
-        private List<MetricItem> items = new ArrayList<MetricItem>();
+        private List<MetricItem> items = new ArrayList<>();
 
         public static Builder create() {
             return new Builder();
@@ -107,7 +107,7 @@ public class MetricItem {
         }
 
         public List<MetricItem> build() {
-            return new ArrayList<MetricItem>(items);
+            return new ArrayList<>(items);
         }
     }
 }

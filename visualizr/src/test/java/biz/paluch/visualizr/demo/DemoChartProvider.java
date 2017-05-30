@@ -1,12 +1,12 @@
 package biz.paluch.visualizr.demo;
 
+import java.text.SimpleDateFormat;
+import java.util.*;
+
 import biz.paluch.visualizr.model.ChartData;
 import biz.paluch.visualizr.model.ChartDescriptor;
 import biz.paluch.visualizr.model.ChartGraphDescriptor;
 import biz.paluch.visualizr.spi.ChartProvider;
-
-import java.text.SimpleDateFormat;
-import java.util.*;
 
 /**
  * @author <a href="mailto:mpaluch@paluch.biz">Mark Paluch</a>
@@ -39,13 +39,13 @@ public class DemoChartProvider implements ChartProvider {
     @Override
     public Map<String, List<ChartData>> getDatasets(String dataSourceId, Date from, Date to, List<String> chartIds) {
 
-        Map<String, List<ChartData>> result = new HashMap<String, List<ChartData>>();
+        Map<String, List<ChartData>> result = new HashMap<>();
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm");
         for (String chartId : chartIds) {
             Calendar cal = Calendar.getInstance();
             cal.setTime(from);
 
-            List<ChartData> list = new ArrayList<ChartData>();
+            List<ChartData> list = new ArrayList<>();
 
             double degrees = 0;
 

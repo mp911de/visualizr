@@ -60,10 +60,10 @@ Versions/Dependencies
 This project is built against following dependencies/versions:
 
 * Apache Velocity 1.7
-* RESTEasy/RESTEasy Jackson 2.3.6
-* Jackson 1.9.9 (ASL)
-* Google Guava 16.0.1
-* Java Servlet API 3 (will work with 2.5 as well)
+* RESTEasy/RESTEasy Jackson 3.0.19
+* Jackson 2.8.8
+* Google Guava 21.0
+* Java Servlet API 3.1 (will work with 2.5 as well)
 
 HTML/Javascript Frameworks
 --------------

@@ -11,7 +11,7 @@ public class ComposedChart {
     private String id;
     private String name;
     private String units;
-    private List<MetricRef> metrics = new ArrayList<MetricRef>();
+    private List<MetricRef> metrics = new ArrayList<>();
 
     public ComposedChart() {
     }

@@ -1,8 +1,8 @@
 package biz.paluch.visualizr.spi;
 
-import biz.paluch.visualizr.model.ChartDataSource;
-
 import java.util.List;
+
+import biz.paluch.visualizr.model.ChartDataSource;
 
 /**
  * @author <a href="mailto:mpaluch@paluch.biz">Mark Paluch</a>

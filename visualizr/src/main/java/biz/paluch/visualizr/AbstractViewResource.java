@@ -26,9 +26,13 @@ public abstract class AbstractViewResource {
     private VelocityEngine velocityEngine;
 
     @PostConstruct
-    public void postConstruct() throws Exception {
+    public void postConstruct() {
         Properties p = new Properties();
-        p.load(getClass().getResourceAsStream("/velocity.properties"));
+        try {
+            p.load(getClass().getResourceAsStream("/velocity.properties"));
+        } catch (IOException e) {
+            //according to the specification postConstruct should not throw Exceptions
+        }
         velocityEngine = new VelocityEngine(p);
         velocityEngine.init();
     }
@@ -36,7 +40,7 @@ public abstract class AbstractViewResource {
     @GET
     @Path("single.html")
     @Produces(MediaType.TEXT_HTML)
-    public String getView() throws Exception {
+    public String getView() {
 
         if (velocityEngine == null) {
             postConstruct();
