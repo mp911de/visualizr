@@ -7,6 +7,7 @@ import java.util.concurrent.TimeUnit;
 
 /**
  * @author <a href="mailto:mpaluch@paluch.biz">Mark Paluch</a>
+ * @author <a href="mailto:stephan.frigger@kaufland.de">Stephan Frigger</a>
  * @since 01.07.14 12:30
  */
 public class MetricItem {
@@ -50,10 +51,6 @@ public class MetricItem {
 
         public static Builder create() {
             return new Builder();
-        }
-
-        private Builder() {
-
         }
 
         public Builder count(String name) {

@@ -1,18 +1,19 @@
 package biz.paluch.visualizr.metrics;
 
-import com.codahale.metrics.*;
+import static com.codahale.metrics.MetricRegistry.*;
 
 import java.util.HashMap;
 import java.util.Map;
 import java.util.SortedMap;
 import java.util.concurrent.TimeUnit;
 
-import static com.codahale.metrics.MetricRegistry.name;
+import com.codahale.metrics.*;
 
 /**
  * Reporter to submit metrics to visualizr.
- * 
+ *
  * @author <a href="mailto:mpaluch@paluch.biz">Mark Paluch</a>
+ * @author <a href="mailto:stephan.frigger@kaufland.de">Stephan Frigger</a>
  * @since 01.07.14 08:20
  */
 public class VisualizrReporter extends ScheduledReporter {

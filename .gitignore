@@ -1,4 +1,4 @@
 target
 atlassian-ide-plugin.xml
 *.iml
-.idea
+/.idea/
