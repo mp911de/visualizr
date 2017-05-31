@@ -1,20 +1,22 @@
 package biz.paluch.visualizr;
 
-import biz.paluch.visualizr.spi.DataSourceProvider;
-import org.apache.velocity.Template;
-import org.apache.velocity.VelocityContext;
-import org.apache.velocity.app.VelocityEngine;
-import org.apache.velocity.context.Context;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.StringWriter;
+import java.util.Properties;
 
 import javax.annotation.PostConstruct;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.StringWriter;
-import java.util.Properties;
+
+import org.apache.velocity.Template;
+import org.apache.velocity.VelocityContext;
+import org.apache.velocity.app.VelocityEngine;
+import org.apache.velocity.context.Context;
+
+import biz.paluch.visualizr.spi.DataSourceProvider;
 
 /**
  * @author <a href="mailto:mpaluch@paluch.biz">Mark Paluch</a>
@@ -63,17 +65,15 @@ public abstract class AbstractViewResource {
     }
 
     private boolean isLocalHostedJsFrameworksAvailable() {
-        InputStream is = getClass().getResourceAsStream("/resources/js/jquery.min.js");
-        if (is == null) {
-            return false;
-        } else {
-            try {
-                is.close();
-            } catch (IOException e) {
-                // ignore
+        try (InputStream is = getClass().getResourceAsStream("/resources/js/jquery.min.js")) {
+            if (is == null) {
+                return false;
             }
-            return true;
+        } catch (IOException e) {
+            // ignore
         }
+
+        return true;
     }
 
     public abstract DataSourceProvider getDataSourceProvider();

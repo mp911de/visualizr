@@ -7,6 +7,7 @@ import java.util.concurrent.TimeUnit;
 
 /**
  * @author <a href="mailto:mpaluch@paluch.biz">Mark Paluch</a>
+ * @author <a href="mailto:stephan.frigger@kaufland.de">Stephan Frigger</a>
  * @since 01.07.14 12:30
  */
 public class MetricItem {

@@ -6,9 +6,11 @@ import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.TimeUnit;
+import java.util.stream.Collectors;
 
 /**
  * @author <a href="mailto:mpaluch@paluch.biz">Mark Paluch</a>
+ * @author <a href="mailto:stephan.frigger@kaufland.de">Stephan Frigger</a>
  * @since 01.07.14 08:10
  */
 public class Snapshots {
@@ -21,7 +23,7 @@ public class Snapshots {
     }
 
     public void setDescriptor(String name, List<MetricItem> descriptors) {
-        metricsDescriptors.put(name, Collections.unmodifiableList(descriptors));
+        metricsDescriptors.put(name, Collections.unmodifiableList(new ArrayList<>(descriptors)));
     }
 
     public void addSnapshot(String name, long timestamp, Map<String, ? extends Number> values) {
@@ -38,13 +40,8 @@ public class Snapshots {
     public List<TimedSnapshot> getSnapshots(String name, long from, long to) {
 
         List<TimedSnapshot> snapshots = getSnapshots(name);
-        List<TimedSnapshot> result = new ArrayList<>();
-
-        for (TimedSnapshot snapshot : snapshots) {
-            if (snapshot.getTimestamp() >= from && snapshot.getTimestamp() <= to) {
-                result.add(snapshot);
-            }
-        }
+        List<TimedSnapshot> result = snapshots.stream().filter(it -> it.getTimestamp() >= from && it.getTimestamp() <= to)
+                .collect(Collectors.toList());
 
         return Collections.unmodifiableList(result);
     }

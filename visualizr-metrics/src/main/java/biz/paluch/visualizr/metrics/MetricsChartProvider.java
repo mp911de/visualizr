@@ -1,12 +1,12 @@
 package biz.paluch.visualizr.metrics;
 
-import static com.google.common.collect.Iterables.getFirst;
-
 import java.text.SimpleDateFormat;
-import java.util.*;
-import java.util.stream.Collectors;
-
-import com.google.common.collect.ImmutableList;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 import biz.paluch.visualizr.model.ChartData;
 import biz.paluch.visualizr.model.ChartDescriptor;
@@ -15,6 +15,7 @@ import biz.paluch.visualizr.spi.ChartProvider;
 
 /**
  * @author <a href="mailto:mpaluch@paluch.biz">Mark Paluch</a>
+ * @author <a href="mailto:stephan.frigger@kaufland.de">Stephan Frigger</a>
  * @since 02.07.14 07:57
  */
 public class MetricsChartProvider implements ChartProvider {
@@ -29,7 +30,7 @@ public class MetricsChartProvider implements ChartProvider {
 
     public MetricsChartProvider(Snapshots snapshots, List<CompositeDataSource> compositeDataSources) {
         this.snapshots = snapshots;
-        this.compositeDataSources = ImmutableList.copyOf(compositeDataSources);
+        this.compositeDataSources = Collections.unmodifiableList(new ArrayList<>(compositeDataSources));
     }
 
     @Override
@@ -92,7 +93,6 @@ public class MetricsChartProvider implements ChartProvider {
             if (descriptor.getName().matches(PERCENTILE_REGEX)) {
 
                 if (percentiles == null) {
-
                     percentiles = createDescriptor(QUANTILES, "Quantiles", TIME, descriptor.getUnits());
                 }
 
@@ -125,8 +125,7 @@ public class MetricsChartProvider implements ChartProvider {
     }
 
     private CompositeDataSource getCompositeDatasource(final String datasourceId) {
-
-        return getFirst(compositeDataSources.stream().filter(input -> datasourceId.equals(input.getId())).collect(Collectors.toList()), null);
+        return compositeDataSources.stream().filter(input -> datasourceId.equals(input.getId())).findFirst().orElse(null);
     }
 
     private ChartDescriptor createDescriptor(String id, String title, String xAxisTitle, String unit) {

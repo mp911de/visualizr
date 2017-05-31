@@ -10,6 +10,7 @@ import biz.paluch.visualizr.spi.ChartProvider;
 
 /**
  * @author <a href="mailto:mpaluch@paluch.biz">Mark Paluch</a>
+ * @author <a href="mailto:stephan.frigger@kaufland.de">Stephan Frigger</a>
  * @since 15.04.14 08:30
  */
 public class DemoChartProvider implements ChartProvider {

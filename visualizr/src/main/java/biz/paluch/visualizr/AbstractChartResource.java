@@ -20,9 +20,7 @@ public abstract class AbstractChartResource {
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     public List<ChartDescriptor> getDatasets(@PathParam("datasource") String dataSourceId) {
-
-        List<ChartDescriptor> chartDescriptors = getChartProvider().getChartDescriptors(dataSourceId);
-        return chartDescriptors;
+        return getChartProvider().getChartDescriptors(dataSourceId);
     }
 
     public abstract ChartProvider getChartProvider();

@@ -1,8 +1,9 @@
 package biz.paluch.visualizr.metrics;
 
+import java.util.Collections;
 import java.util.List;
-
-import com.google.common.collect.ImmutableList;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 /**
  * @author <a href="mailto:mpaluch@paluch.biz">Mark Paluch</a>
@@ -17,7 +18,7 @@ public class DefaultComposites {
         CompositeDataSource memory = getMemory();
         CompositeDataSource gc = getGC();
 
-        return ImmutableList.of(bufferpools, threadstates, memory, gc);
+        return Collections.unmodifiableList(Stream.of(bufferpools, threadstates, memory, gc).collect(Collectors.toList()));
 
     }
 

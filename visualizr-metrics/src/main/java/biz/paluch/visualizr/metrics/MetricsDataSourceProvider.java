@@ -1,16 +1,16 @@
 package biz.paluch.visualizr.metrics;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Map;
-
-import com.google.common.collect.ImmutableList;
 
 import biz.paluch.visualizr.model.ChartDataSource;
 import biz.paluch.visualizr.spi.DataSourceProvider;
 
 /**
  * @author <a href="mailto:mpaluch@paluch.biz">Mark Paluch</a>
+ * @author <a href="mailto:stephan.frigger@kaufland.de">Stephan Frigger</a>
  * @since 02.07.14 07:58
  */
 public class MetricsDataSourceProvider implements DataSourceProvider {
@@ -19,7 +19,7 @@ public class MetricsDataSourceProvider implements DataSourceProvider {
 
     public MetricsDataSourceProvider(Snapshots snapshots, List<CompositeDataSource> compositeDataSources) {
         this.snapshots = snapshots;
-        this.compositeDataSources = ImmutableList.copyOf(compositeDataSources);
+        this.compositeDataSources = Collections.unmodifiableList(new ArrayList<>(compositeDataSources));
     }
 
     @Override
