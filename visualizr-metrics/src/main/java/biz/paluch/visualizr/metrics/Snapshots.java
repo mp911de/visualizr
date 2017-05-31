@@ -12,8 +12,8 @@ import java.util.concurrent.TimeUnit;
  * @since 01.07.14 08:10
  */
 public class Snapshots {
-    private Map<String, List<TimedSnapshot>> metricsSnapshots = new ConcurrentHashMap<String, List<TimedSnapshot>>();
-    private Map<String, List<MetricItem>> metricsDescriptors = new ConcurrentHashMap<String, List<MetricItem>>();
+    private Map<String, List<TimedSnapshot>> metricsSnapshots = new ConcurrentHashMap<>();
+    private Map<String, List<MetricItem>> metricsDescriptors = new ConcurrentHashMap<>();
     private TimeUnit durationUnit = TimeUnit.SECONDS;
 
     public boolean hasDescriptor(String name) {
@@ -32,18 +32,13 @@ public class Snapshots {
     }
 
     private List<TimedSnapshot> getSnapshots(String name) {
-        List<TimedSnapshot> snapshots = metricsSnapshots.get(name);
-        if (snapshots == null) {
-            snapshots = new ArrayList<TimedSnapshot>();
-            metricsSnapshots.put(name, snapshots);
-        }
-        return snapshots;
+        return metricsSnapshots.computeIfAbsent(name, k -> new ArrayList<>());
     }
 
     public List<TimedSnapshot> getSnapshots(String name, long from, long to) {
 
         List<TimedSnapshot> snapshots = getSnapshots(name);
-        List<TimedSnapshot> result = new ArrayList<TimedSnapshot>();
+        List<TimedSnapshot> result = new ArrayList<>();
 
         for (TimedSnapshot snapshot : snapshots) {
             if (snapshot.getTimestamp() >= from && snapshot.getTimestamp() <= to) {

@@ -10,7 +10,7 @@ import java.util.List;
 public class CompositeDataSource {
     private String id;
     private String name;
-    private List<ComposedChart> charts = new ArrayList<ComposedChart>();
+    private List<ComposedChart> charts = new ArrayList<>();
 
     public CompositeDataSource() {
     }

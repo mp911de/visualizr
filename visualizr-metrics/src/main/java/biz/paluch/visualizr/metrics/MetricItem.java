@@ -46,14 +46,14 @@ public class MetricItem {
 
     public static class Builder {
 
-        private List<MetricItem> items = new ArrayList<MetricItem>();
-
-        public static Builder create() {
-            return new Builder();
-        }
+        private List<MetricItem> items = new ArrayList<>();
 
         private Builder() {
 
+        }
+
+        public static Builder create() {
+            return new Builder();
         }
 
         public Builder count(String name) {
@@ -107,7 +107,7 @@ public class MetricItem {
         }
 
         public List<MetricItem> build() {
-            return new ArrayList<MetricItem>(items);
+            return new ArrayList<>(items);
         }
     }
 }

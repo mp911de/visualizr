@@ -1,15 +1,13 @@
 package biz.paluch.visualizr.metrics;
 
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
 
+import com.google.common.collect.ImmutableList;
+
 import biz.paluch.visualizr.model.ChartDataSource;
 import biz.paluch.visualizr.spi.DataSourceProvider;
-
-import com.google.common.collect.ImmutableList;
 
 /**
  * @author <a href="mailto:mpaluch@paluch.biz">Mark Paluch</a>
@@ -27,10 +25,10 @@ public class MetricsDataSourceProvider implements DataSourceProvider {
     @Override
     public List<ChartDataSource> getDataSources() {
         Map<String, List<MetricItem>> metricsDescriptors = snapshots.getMetricsDescriptors();
-        List<ChartDataSource> result = new ArrayList<ChartDataSource>();
+        List<ChartDataSource> result = new ArrayList<>();
 
-        List<String> metricIds = new ArrayList<String>(metricsDescriptors.keySet());
-        List<String> toRemove = new ArrayList<String>();
+        List<String> metricIds = new ArrayList<>(metricsDescriptors.keySet());
+        List<String> toRemove = new ArrayList<>();
 
         for (CompositeDataSource compositeDataSource : compositeDataSources) {
             ChartDataSource chartDataSource = new ChartDataSource();
@@ -63,13 +61,7 @@ public class MetricsDataSourceProvider implements DataSourceProvider {
             result.add(chartDataSource);
         }
 
-        Collections.sort(result, new Comparator<ChartDataSource>() {
-            @Override
-            public int compare(ChartDataSource o1, ChartDataSource o2) {
-                return o1.getName().compareToIgnoreCase(o2.getName());
-            }
-
-        });
+        result.sort((o1, o2) -> o1.getName().compareToIgnoreCase(o2.getName()));
 
         return result;
     }

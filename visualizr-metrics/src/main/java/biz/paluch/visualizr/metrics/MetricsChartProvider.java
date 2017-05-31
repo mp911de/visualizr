@@ -1,23 +1,17 @@
 package biz.paluch.visualizr.metrics;
 
-import static com.google.common.collect.Iterables.filter;
 import static com.google.common.collect.Iterables.getFirst;
 
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
+import java.util.stream.Collectors;
+
+import com.google.common.collect.ImmutableList;
 
 import biz.paluch.visualizr.model.ChartData;
 import biz.paluch.visualizr.model.ChartDescriptor;
 import biz.paluch.visualizr.model.ChartGraphDescriptor;
 import biz.paluch.visualizr.spi.ChartProvider;
-
-import com.google.common.base.Predicate;
-import com.google.common.collect.ImmutableList;
 
 /**
  * @author <a href="mailto:mpaluch@paluch.biz">Mark Paluch</a>
@@ -60,7 +54,7 @@ public class MetricsChartProvider implements ChartProvider {
     }
 
     private List<ChartDescriptor> getChartDescriptors(CompositeDataSource compositeDataSource) {
-        List<ChartDescriptor> chartDescriptors = new ArrayList<ChartDescriptor>();
+        List<ChartDescriptor> chartDescriptors = new ArrayList<>();
         for (ComposedChart composedChart : compositeDataSource.getCharts()) {
 
             ChartDescriptor chart = createDescriptor(composedChart.getId(), composedChart.getName(), "",
@@ -88,7 +82,7 @@ public class MetricsChartProvider implements ChartProvider {
     }
 
     private List<ChartDescriptor> getChartDescriptors(List<MetricItem> descriptors) {
-        List<ChartDescriptor> result = new ArrayList<ChartDescriptor>();
+        List<ChartDescriptor> result = new ArrayList<>();
 
         ChartDescriptor percentiles = null;
         ChartDescriptor rates = null;
@@ -132,13 +126,7 @@ public class MetricsChartProvider implements ChartProvider {
 
     private CompositeDataSource getCompositeDatasource(final String datasourceId) {
 
-        return getFirst(filter(compositeDataSources, new Predicate<CompositeDataSource>() {
-            @Override
-            public boolean apply(CompositeDataSource input) {
-
-                return datasourceId.equals(input.getId());
-            }
-        }), null);
+        return getFirst(compositeDataSources.stream().filter(input -> datasourceId.equals(input.getId())).collect(Collectors.toList()), null);
     }
 
     private ChartDescriptor createDescriptor(String id, String title, String xAxisTitle, String unit) {
@@ -158,7 +146,7 @@ public class MetricsChartProvider implements ChartProvider {
     @Override
     public Map<String, List<ChartData>> getDatasets(String dataSourceId, Date from, Date to, List<String> chartIds) {
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm");
-        Map<String, List<ChartData>> result = new HashMap<String, List<ChartData>>();
+        Map<String, List<ChartData>> result = new HashMap<>();
 
         CompositeDataSource compositeDataSource = getCompositeDatasource(dataSourceId);
         if (compositeDataSource != null) {
@@ -169,7 +157,7 @@ public class MetricsChartProvider implements ChartProvider {
                     continue;
                 }
 
-                List<ChartData> dataset = new ArrayList<ChartData>();
+                List<ChartData> dataset = new ArrayList<>();
                 for (MetricRef metricRef : composedChart.getMetrics()) {
                     List<TimedSnapshot> timedSnapshots = snapshots.getSnapshots(metricRef.getMetric(), from.getTime(),
                             to.getTime());
@@ -221,7 +209,7 @@ public class MetricsChartProvider implements ChartProvider {
     private List<ChartData> getChartDataset(SimpleDateFormat simpleDateFormat, List<TimedSnapshot> timedSnapshots,
             String chartId, String valueId) {
 
-        List<ChartData> dataset = new ArrayList<ChartData>();
+        List<ChartData> dataset = new ArrayList<>();
 
         if (chartId.equals(QUANTILES)) {
 

@@ -7,17 +7,7 @@ import java.util.Map;
 import java.util.SortedMap;
 import java.util.concurrent.TimeUnit;
 
-import com.codahale.metrics.Clock;
-import com.codahale.metrics.Counter;
-import com.codahale.metrics.Gauge;
-import com.codahale.metrics.Histogram;
-import com.codahale.metrics.Meter;
-import com.codahale.metrics.Metered;
-import com.codahale.metrics.MetricFilter;
-import com.codahale.metrics.MetricRegistry;
-import com.codahale.metrics.ScheduledReporter;
-import com.codahale.metrics.Snapshot;
-import com.codahale.metrics.Timer;
+import com.codahale.metrics.*;
 
 /**
  * Reporter to submit metrics to visualizr.
@@ -27,106 +17,9 @@ import com.codahale.metrics.Timer;
  */
 public class VisualizrReporter extends ScheduledReporter {
 
-    /**
-     * Returns a new {@link Builder} for {@link VisualizrReporter}.
-     * 
-     * @param registry the registry to report
-     * @return a {@link Builder} instance for a {@link VisualizrReporter}
-     */
-    public static Builder forRegistry(MetricRegistry registry) {
-        return new Builder(registry);
-    }
-
-    /**
-     * A builder for {@link VisualizrReporter} instances. Defaults to using a {@code tmax} of {@code 60}, a {@code dmax} of
-     * {@code 0}, converting rates to events/second, converting durations to milliseconds, and not filtering metrics.
-     */
-    public static class Builder {
-        private final MetricRegistry registry;
-        private String prefix;
-        private Clock clock;
-        private TimeUnit rateUnit;
-        private TimeUnit durationUnit;
-        private MetricFilter filter;
-
-        private Builder(MetricRegistry registry) {
-            this.registry = registry;
-            this.clock = Clock.defaultClock();
-            this.rateUnit = TimeUnit.MINUTES;
-            this.durationUnit = TimeUnit.MILLISECONDS;
-            this.filter = MetricFilter.ALL;
-        }
-
-        /**
-         * Prefix all metric names with the given string.
-         * 
-         * @param prefix the prefix for all metric names
-         * @return {@code this}
-         */
-        public Builder prefixedWith(String prefix) {
-            this.prefix = prefix;
-            return this;
-        }
-
-        /**
-         * Use the supplied clock.
-         * 
-         * @param clock
-         * @return {@code this}
-         */
-        public Builder withClock(Clock clock) {
-            this.clock = clock;
-            return this;
-        }
-
-        /**
-         * Convert rates to the given time unit.
-         * 
-         * @param rateUnit a unit of time
-         * @return {@code this}
-         */
-        public Builder convertRatesTo(TimeUnit rateUnit) {
-            this.rateUnit = rateUnit;
-            return this;
-        }
-
-        /**
-         * Convert durations to the given time unit.
-         * 
-         * @param durationUnit a unit of time
-         * @return {@code this}
-         */
-        public Builder convertDurationsTo(TimeUnit durationUnit) {
-            this.durationUnit = durationUnit;
-            return this;
-        }
-
-        /**
-         * Only report metrics which match the given filter.
-         * 
-         * @param filter a {@link MetricFilter}
-         * @return {@code this}
-         */
-        public Builder filter(MetricFilter filter) {
-            this.filter = filter;
-            return this;
-        }
-
-        /**
-         * Builds a {@link VisualizrReporter} with the given properties, pushing metrics to a visualizr snapshots store.
-         * 
-         * @param snapshots the client to use for announcing metrics
-         * @return a {@link VisualizrReporter}
-         */
-        public VisualizrReporter build(Snapshots snapshots) {
-            return new VisualizrReporter(registry, snapshots, prefix, clock, rateUnit, durationUnit, filter);
-        }
-    }
-
     private final Snapshots snapshots;
     private final String prefix;
     private final Clock clock;
-
     private final TimeUnit durationUnit;
     private final TimeUnit rateUnit;
 
@@ -139,6 +32,16 @@ public class VisualizrReporter extends ScheduledReporter {
         this.rateUnit = rateUnit;
         this.durationUnit = durationUnit;
         snapshots.setDurationUnit(durationUnit);
+    }
+
+    /**
+     * Returns a new {@link Builder} for {@link VisualizrReporter}.
+     *
+     * @param registry the registry to report
+     * @return a {@link Builder} instance for a {@link VisualizrReporter}
+     */
+    public static Builder forRegistry(MetricRegistry registry) {
+        return new Builder(registry);
     }
 
     /**
@@ -175,7 +78,7 @@ public class VisualizrReporter extends ScheduledReporter {
 
     /**
      * Report a timer using fields max/mean/min/stddev,p50/p75/p95/p98/p99/p999/calls/m1_rate/m5_rate/m15_rate/mean_rate
-     * 
+     *
      * @param name
      * @param timer
      */
@@ -209,7 +112,7 @@ public class VisualizrReporter extends ScheduledReporter {
 
         }
 
-        Map<String, Number> values = new HashMap<String, Number>();
+        Map<String, Number> values = new HashMap<>();
 
         values.put("max", convertDuration(snapshot.getMax()));
         values.put("mean", convertDuration(snapshot.getMean()));
@@ -231,7 +134,7 @@ public class VisualizrReporter extends ScheduledReporter {
 
     /**
      * Report a meter using fields events/m1_rate/m5_rate/m15_rate/mean_rate
-     * 
+     *
      * @param name
      * @param meter
      */
@@ -250,7 +153,7 @@ public class VisualizrReporter extends ScheduledReporter {
             snapshots.setDescriptor(prefixedName, builder.build());
         }
 
-        Map<String, Number> values = new HashMap<String, Number>();
+        Map<String, Number> values = new HashMap<>();
 
         addMetered(meter, values, "events");
 
@@ -259,7 +162,7 @@ public class VisualizrReporter extends ScheduledReporter {
 
     /**
      * Report a histogram using fields max/mean/min/stddev,p50/p75/p95/p98/p99/p999/count
-     * 
+     *
      * @param name
      * @param histogram
      */
@@ -286,7 +189,7 @@ public class VisualizrReporter extends ScheduledReporter {
 
         }
 
-        Map<String, Number> values = new HashMap<String, Number>();
+        Map<String, Number> values = new HashMap<>();
 
         values.put("max", (snapshot.getMax()));
         values.put("mean", (snapshot.getMean()));
@@ -320,7 +223,7 @@ public class VisualizrReporter extends ScheduledReporter {
 
     /**
      * Report a gauge using the field gauge. Only numeric values are used.
-     * 
+     *
      * @param name
      * @param gauge
      */
@@ -340,7 +243,7 @@ public class VisualizrReporter extends ScheduledReporter {
     }
 
     private <K, V> Map<K, V> map(K key, V value) {
-        Map<K, V> map = new HashMap<K, V>();
+        Map<K, V> map = new HashMap<>();
         map.put(key, value);
         return map;
     }
@@ -356,5 +259,91 @@ public class VisualizrReporter extends ScheduledReporter {
         values.put("m5_rate", convertRate(meter.getFiveMinuteRate()));
         values.put("m15_rate", convertRate(meter.getFifteenMinuteRate()));
         values.put("mean_rate", convertRate(meter.getMeanRate()));
+    }
+
+    /**
+     * A builder for {@link VisualizrReporter} instances. Defaults to using a {@code tmax} of {@code 60}, a {@code dmax} of
+     * {@code 0}, converting rates to events/second, converting durations to milliseconds, and not filtering metrics.
+     */
+    public static class Builder {
+        private final MetricRegistry registry;
+        private String prefix;
+        private Clock clock;
+        private TimeUnit rateUnit;
+        private TimeUnit durationUnit;
+        private MetricFilter filter;
+
+        private Builder(MetricRegistry registry) {
+            this.registry = registry;
+            this.clock = Clock.defaultClock();
+            this.rateUnit = TimeUnit.MINUTES;
+            this.durationUnit = TimeUnit.MILLISECONDS;
+            this.filter = MetricFilter.ALL;
+        }
+
+        /**
+         * Prefix all metric names with the given string.
+         *
+         * @param prefix the prefix for all metric names
+         * @return {@code this}
+         */
+        public Builder prefixedWith(String prefix) {
+            this.prefix = prefix;
+            return this;
+        }
+
+        /**
+         * Use the supplied clock.
+         *
+         * @param clock
+         * @return {@code this}
+         */
+        public Builder withClock(Clock clock) {
+            this.clock = clock;
+            return this;
+        }
+
+        /**
+         * Convert rates to the given time unit.
+         *
+         * @param rateUnit a unit of time
+         * @return {@code this}
+         */
+        public Builder convertRatesTo(TimeUnit rateUnit) {
+            this.rateUnit = rateUnit;
+            return this;
+        }
+
+        /**
+         * Convert durations to the given time unit.
+         *
+         * @param durationUnit a unit of time
+         * @return {@code this}
+         */
+        public Builder convertDurationsTo(TimeUnit durationUnit) {
+            this.durationUnit = durationUnit;
+            return this;
+        }
+
+        /**
+         * Only report metrics which match the given filter.
+         *
+         * @param filter a {@link MetricFilter}
+         * @return {@code this}
+         */
+        public Builder filter(MetricFilter filter) {
+            this.filter = filter;
+            return this;
+        }
+
+        /**
+         * Builds a {@link VisualizrReporter} with the given properties, pushing metrics to a visualizr snapshots store.
+         *
+         * @param snapshots the client to use for announcing metrics
+         * @return a {@link VisualizrReporter}
+         */
+        public VisualizrReporter build(Snapshots snapshots) {
+            return new VisualizrReporter(registry, snapshots, prefix, clock, rateUnit, durationUnit, filter);
+        }
     }
 }
