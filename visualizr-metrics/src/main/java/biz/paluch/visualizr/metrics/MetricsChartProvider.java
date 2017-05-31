@@ -13,6 +13,7 @@ import biz.paluch.visualizr.model.ChartDescriptor;
 import biz.paluch.visualizr.model.ChartGraphDescriptor;
 import biz.paluch.visualizr.spi.ChartProvider;
 
+
 /**
  * @author <a href="mailto:mpaluch@paluch.biz">Mark Paluch</a>
  * @author <a href="mailto:stephan.frigger@kaufland.de">Stephan Frigger</a>
@@ -20,10 +21,10 @@ import biz.paluch.visualizr.spi.ChartProvider;
  */
 public class MetricsChartProvider implements ChartProvider {
 
-    public static final String PERCENTILE_REGEX = "(.*)p(\\d+)";
-    public static final String TIMESTAMP = "timestamp";
-    public static final String QUANTILES = "quantiles";
-    public static final String TIME = "Time";
+    private static final String PERCENTILE_REGEX = "(.*)p(\\d+)";
+    private static final String TIMESTAMP = "timestamp";
+    private static final String QUANTILES = "quantiles";
+    private static final String TIME = "Time";
 
     private Snapshots snapshots;
     private List<CompositeDataSource> compositeDataSources;
@@ -43,14 +44,11 @@ public class MetricsChartProvider implements ChartProvider {
             if (descriptors == null) {
                 return Collections.emptyList();
             }
-            List<ChartDescriptor> result = getChartDescriptors(descriptors);
 
-            return result;
+            return getChartDescriptors(descriptors);
         }
 
-        List<ChartDescriptor> chartDescriptors = getChartDescriptors(compositeDataSource);
-
-        return chartDescriptors;
+        return getChartDescriptors(compositeDataSource);
 
     }
 
@@ -86,7 +84,6 @@ public class MetricsChartProvider implements ChartProvider {
         List<ChartDescriptor> result = new ArrayList<>();
 
         ChartDescriptor percentiles = null;
-        ChartDescriptor rates = null;
 
         for (MetricItem descriptor : descriptors) {
 
@@ -118,9 +115,6 @@ public class MetricsChartProvider implements ChartProvider {
             result.add(percentiles);
         }
 
-        if (rates != null) {
-            result.add(rates);
-        }
         return result;
     }
 
@@ -167,12 +161,7 @@ public class MetricsChartProvider implements ChartProvider {
                         ChartData chartData = getOrCreate(dataset, timestamp);
                         chartData.set(TIMESTAMP, timestamp);
 
-                        Object value = timedSnapshot.getValues().get(metricRef.getValue());
-                        if (!(value instanceof Number)) {
-                            continue;
-                        }
-
-                        Number number = (Number) value;
+                        Number number = timedSnapshot.getValues().get(metricRef.getValue());
 
                         if (metricRef.getMultiplier() != 1) {
                             chartData.set(valueName(metricRef), number.doubleValue() * metricRef.getMultiplier());

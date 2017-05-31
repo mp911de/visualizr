@@ -20,7 +20,7 @@
 
         <dependency>
             <groupId>org.jboss.resteasy</groupId>
-            <artifactId>resteasy-jackson-provider</artifactId>
+            <artifactId>resteasy-jackson2-provider</artifactId>
         </dependency>
 
         <dependency>
@@ -44,16 +44,16 @@
         </dependency>
 
         <dependency>
-            <groupId>com.codahale.metrics</groupId>
+            <groupId>io.dropwizard.metrics</groupId>
             <artifactId>metrics-servlet</artifactId>
-            <version>3.0.2</version>
+            <version>3.2.2</version>
             <scope>test</scope>
         </dependency>
 
         <dependency>
-            <groupId>com.codahale.metrics</groupId>
+            <groupId>io.dropwizard.metrics</groupId>
             <artifactId>metrics-servlets</artifactId>
-            <version>3.0.2</version>
+            <version>3.2.2</version>
             <scope>test</scope>
         </dependency>
 
@@ -72,7 +72,7 @@
         <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-simple</artifactId>
-            <version>1.7.7</version>
+            <version>1.7.25</version>
             <scope>test</scope>
         </dependency>
 
@@ -89,12 +89,12 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.1</version>
+                <version>3.6.1</version>
             </plugin>
             <plugin>
                 <groupId>org.eclipse.jetty</groupId>
                 <artifactId>jetty-maven-plugin</artifactId>
-                <version>9.1.4.v20140401</version>
+                <version>9.4.5.v20170502</version>
                 <configuration>
                     <useTestScope>true</useTestScope>
                     <useProvidedScope>true</useProvidedScope>

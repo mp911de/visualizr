@@ -49,10 +49,6 @@ public class MetricItem {
 
         private List<MetricItem> items = new ArrayList<>();
 
-        private Builder() {
-
-        }
-
         public static Builder create() {
             return new Builder();
         }

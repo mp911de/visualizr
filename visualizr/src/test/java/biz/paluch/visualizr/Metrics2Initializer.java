@@ -1,22 +1,15 @@
 package biz.paluch.visualizr;
 
-import java.lang.management.ManagementFactory;
-import java.util.concurrent.TimeUnit;
-
-import javax.servlet.ServletContextEvent;
-
 import biz.paluch.visualizr.metrics.SnapshotsHolder;
 import biz.paluch.visualizr.metrics.VisualizrReporter;
-
 import com.codahale.metrics.MetricRegistry;
-import com.codahale.metrics.jvm.BufferPoolMetricSet;
-import com.codahale.metrics.jvm.FileDescriptorRatioGauge;
-import com.codahale.metrics.jvm.GarbageCollectorMetricSet;
-import com.codahale.metrics.jvm.MemoryUsageGaugeSet;
-import com.codahale.metrics.jvm.ThreadDeadlockDetector;
-import com.codahale.metrics.jvm.ThreadStatesGaugeSet;
+import com.codahale.metrics.jvm.*;
 import com.codahale.metrics.servlet.InstrumentedFilterContextListener;
 import com.codahale.metrics.servlets.MetricsServlet;
+
+import javax.servlet.ServletContextEvent;
+import java.lang.management.ManagementFactory;
+import java.util.concurrent.TimeUnit;
 
 /**
  * @author <a href="mailto:mpaluch@paluch.biz">Mark Paluch</a>

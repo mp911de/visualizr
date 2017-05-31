@@ -1,14 +1,15 @@
 package biz.paluch.visualizr;
 
-import biz.paluch.visualizr.model.ChartDescriptor;
-import biz.paluch.visualizr.spi.ChartProvider;
+import java.util.List;
 
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
-import java.util.List;
+
+import biz.paluch.visualizr.model.ChartDescriptor;
+import biz.paluch.visualizr.spi.ChartProvider;
 
 /**
  * @author <a href="mailto:mpaluch@paluch.biz">Mark Paluch</a>
